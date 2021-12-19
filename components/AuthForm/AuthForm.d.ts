@@ -1,5 +1,5 @@
 import { Rule } from "antd/lib/form";
-import { AuthFormType } from "../../definitions/enum";
+import { AuthFormType } from "../../definitions/enums";
 
 declare namespace IAuthForm {
   interface Props {

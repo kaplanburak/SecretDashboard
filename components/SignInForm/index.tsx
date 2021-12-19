@@ -10,7 +10,7 @@ import { AuthForm } from "../AuthForm";
 import { IAuthForm } from "../AuthForm/AuthForm";
 import { ISignInForm } from "./SignInForm";
 import { useLoading } from "../../hooks";
-import { AuthFormType } from "../../definitions/enum";
+import { AuthFormType } from "../../definitions/enums";
 
 export const SignInForm: FC<ISignInForm.Props> = ({ authInstance }) => {
   const { startLoading, stopLoading } = useLoading();
@@ -22,7 +22,7 @@ export const SignInForm: FC<ISignInForm.Props> = ({ authInstance }) => {
       return signInWithEmailAndPassword(authInstance, values.email, values.password)
         .then((credential: UserCredential) => {
           stopLoading();
-          showMessage.success("Logged in successfully!");
+          showMessage.success("Success!");
         })
         .catch((error) => {
           stopLoading();

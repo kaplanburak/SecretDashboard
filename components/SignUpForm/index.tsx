@@ -6,7 +6,7 @@ import { AuthForm } from "../AuthForm";
 import { IAuthForm } from "../AuthForm/AuthForm";
 import { ISignUpForm } from "./SignUpForm";
 import { useLoading } from "../../hooks";
-import { AuthFormType } from "../../definitions/enum";
+import { AuthFormType } from "../../definitions/enums";
 
 export const SignUpForm: FC<ISignUpForm.Props> = ({ authInstance }) => {
   const router = useRouter();
@@ -38,7 +38,7 @@ export const SignUpForm: FC<ISignUpForm.Props> = ({ authInstance }) => {
           displayName: values.fullName,
         })
           .then(() => {
-            showMessage.success("Welcome!");
+            showMessage.success("Success!");
             router.push("/");
           })
           .catch(handleError);

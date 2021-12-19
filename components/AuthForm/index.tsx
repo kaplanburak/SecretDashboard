@@ -2,7 +2,7 @@ import { Rule } from "antd/lib/form";
 import { FC } from "react";
 import { Form, Input, Button } from "antd";
 import { IAuthForm } from "./AuthForm";
-import { AuthFormType } from "../../definitions/enum";
+import { AuthFormType } from "../../definitions/enums";
 
 export const AuthForm: FC<IAuthForm.Props> = ({ handleSubmit, type }) => {
   const [form] = Form.useForm();
