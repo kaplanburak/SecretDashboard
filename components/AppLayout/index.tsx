@@ -29,69 +29,69 @@ export const AppLayout: FC = ({ children }) => {
 
   return (
     <Layout className={styles.layout}>
-      <Spin spinning={isLoading || !currentUser}>
-        {currentUser && (
-          <>
-            <Layout.Header>
-              <div className={styles.headerContent}>
-                <div>
-                  <Title level={2} className={styles.headerText}>
-                    {router.pathname
-                      .replace("/", "")
-                      .split("")
-                      .map((char, i) => {
-                        if (i === 0) return char.toUpperCase();
-                        return char;
-                      })}
-                  </Title>
-                </div>
-                <div className={styles.headerUser}>
-                  <Title level={5} className={styles.headerText}>
-                    {currentUser.displayName}
-                  </Title>
-                  <Text className={`${styles.headerText} ${styles.secondary}`}>Admin</Text>
-                </div>
+      {currentUser && (
+        <>
+          <Layout.Header>
+            <div className={styles.headerContent}>
+              <div>
+                <Title level={2} className={styles.headerText}>
+                  {router.pathname
+                    .replace("/", "")
+                    .split("")
+                    .map((char, i) => {
+                      if (i === 0) return char.toUpperCase();
+                      return char;
+                    })}
+                </Title>
               </div>
-            </Layout.Header>
-            <Layout>
-              <Layout.Sider width={200} className={styles.sider}>
-                <Menu className={styles.menu}>
-                  <Menu.Item key="1" icon={<DashboardOutlined />}>
-                    <Link as="/dashboard" href="dashboard">
-                      <a>Dashboard</a>
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="2" icon={<SettingOutlined />}>
-                    <Link as="/settings" href="settings">
-                      <a>Settings</a>
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item
-                    key="3"
-                    icon={<PoweroffOutlined />}
-                    onClick={() => {
-                      signOut(auth)
-                        .then(() => {
-                          router.push("/auth");
-                        })
-                        .catch((error) => {
-                          showMessage.error("An error occurred!");
-                        });
-                    }}
-                  >
-                    Logout
-                  </Menu.Item>
-                </Menu>
-              </Layout.Sider>
-            </Layout>
-            <Layout className={styles.contentLayout}>
-              <Layout.Content className={styles.content}>
+              <div className={styles.headerUser}>
+                <Title level={5} className={styles.headerText}>
+                  {currentUser.displayName}
+                </Title>
+                <Text className={`${styles.headerText} ${styles.secondary}`}>Admin</Text>
+              </div>
+            </div>
+          </Layout.Header>
+          <Layout>
+            <Layout.Sider width={200} className={styles.sider}>
+              <Menu className={styles.menu}>
+                <Menu.Item key="1" icon={<DashboardOutlined />}>
+                  <Link as="/dashboard" href="dashboard">
+                    <a>Dashboard</a>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="2" icon={<SettingOutlined />}>
+                  <Link as="/settings" href="settings">
+                    <a>Settings</a>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item
+                  key="3"
+                  icon={<PoweroffOutlined />}
+                  onClick={() => {
+                    signOut(auth)
+                      .then(() => {
+                        router.push("/auth");
+                      })
+                      .catch((error) => {
+                        showMessage.error("An error occurred!");
+                      });
+                  }}
+                >
+                  Logout
+                </Menu.Item>
+              </Menu>
+            </Layout.Sider>
+          </Layout>
+          <Layout className={styles.contentLayout}>
+            <Layout.Content className={styles.content}>
+              <Spin spinning={isLoading}>
                 <Card>{children}</Card>
-              </Layout.Content>
-            </Layout>
-          </>
-        )}
-      </Spin>
+              </Spin>
+            </Layout.Content>
+          </Layout>
+        </>
+      )}
     </Layout>
   );
 };
