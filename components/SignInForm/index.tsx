@@ -12,13 +12,10 @@ import { IAuthForm } from "../AuthForm/AuthForm";
 import { ISignInForm } from "./SignInForm";
 import { useLoading } from "../../hooks";
 import { AuthFormType } from "../../definitions/enums";
-import { useDispatch } from "react-redux";
-import { AuthActions } from "../../redux/actions/auth";
 
 export const SignInForm: FC<ISignInForm.Props> = ({ authInstance }) => {
   const { startLoading, stopLoading } = useLoading();
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const handleSignIn = (values: IAuthForm.Fields) => {
     startLoading();
@@ -26,12 +23,6 @@ export const SignInForm: FC<ISignInForm.Props> = ({ authInstance }) => {
     setPersistence(authInstance, browserLocalPersistence).then(() => {
       signInWithEmailAndPassword(authInstance, values.email, values.password)
         .then((credential: UserCredential) => {
-          const { displayName, email } = credential.user;
-
-          if (displayName && email) {
-            dispatch(AuthActions.setUser({ displayName, email }));
-          }
-
           stopLoading();
           showMessage.success("Success!");
           router.push("/dashboard");

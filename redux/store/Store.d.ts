@@ -1,7 +1,7 @@
-import { IAuthReducer } from "../reducers/auth/Auth";
 import { ICommonReducer } from "../reducers/common/Common";
+import { IDashboardReducer } from "../reducers/dashboard/Dashboard";
 
 export interface IStore {
   common: ICommonReducer.State;
-  auth: IAuthReducer.State;
+  dashboard: IDashboardReducer.State;
 }

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import { CommonReducer } from "./common";
-import { AuthReducer } from "./auth";
+import { DashboardReducer } from "./dashboard";
 
 export default combineReducers({
   common: CommonReducer,
-  auth: AuthReducer,
+  dashboard: DashboardReducer,
 });

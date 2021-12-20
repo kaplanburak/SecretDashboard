@@ -1,5 +1,5 @@
-import { AuthActions } from "./auth";
+import { DashboardActions } from "./dashboard";
 
 export const Actions = {
-  Auth: AuthActions,
+  Dashboard: DashboardActions,
 };

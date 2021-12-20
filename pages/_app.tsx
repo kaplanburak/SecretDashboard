@@ -5,6 +5,7 @@ import { initFirebase } from "../firebase";
 import "antd/dist/antd.css";
 import "../styles/globals.css";
 import store from "../redux/store";
+import axios from "axios";
 
 const SafeHydrate: FC = ({ children }) => {
   if (typeof window === "undefined") {
@@ -17,6 +18,8 @@ const SafeHydrate: FC = ({ children }) => {
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
+  axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+
   return (
     <SafeHydrate>
       <Provider store={store}>
