@@ -1,6 +1,6 @@
 import { ICommonReducer } from "./Common";
 import { IAction } from "../../Action";
-import { ActionConsts } from "../../actionConsts";
+import { ActionConsts } from "../../actions/consts";
 
 const initialState: ICommonReducer.State = {
   isLoading: false,

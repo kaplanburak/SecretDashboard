@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { Auth, getAuth } from "firebase/auth";
 import { Layout, Card, Button, Spin } from "antd";
@@ -8,10 +8,15 @@ import { SignUpForm } from "../components/SignUpForm";
 import styles from "../styles/page/Auth.module.css";
 import { IStore } from "../redux/store/Store";
 import { useLoading } from "../hooks";
+import { AuthActions } from "../redux/actions/auth";
 
 const Auth: NextPage = () => {
   const auth = getAuth();
+  const dispatch = useDispatch();
+  dispatch(AuthActions.setUser());
+
   const [signedUp, setSignedUp] = useState(true);
+
   const { isLoading } = useSelector((store: IStore) => store.common);
   const { startLoading, stopLoading } = useLoading();
 

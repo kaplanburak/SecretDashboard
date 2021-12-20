@@ -1,4 +1,3 @@
-import { Rule } from "antd/lib/form";
 import { FC } from "react";
 import { Form, Input, Button } from "antd";
 import { IAuthForm } from "./AuthForm";
@@ -8,7 +7,7 @@ export const AuthForm: FC<IAuthForm.Props> = ({ handleSubmit, type }) => {
   const [form] = Form.useForm();
 
   const rules: IAuthForm.FieldRules = {
-    fullName: [
+    name: [
       {
         required: true,
         message: "Please enter your name",
@@ -39,7 +38,7 @@ export const AuthForm: FC<IAuthForm.Props> = ({ handleSubmit, type }) => {
   return (
     <Form form={form} layout="vertical" onFinish={handleSubmit}>
       {type === AuthFormType.SignUp && (
-        <Form.Item label="Full Name" name="name" rules={rules.fullName} hasFeedback>
+        <Form.Item label="Full Name" name="name" rules={rules.name} hasFeedback>
           <Input size="large" />
         </Form.Item>
       )}

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { ActionConsts } from "../redux/actionConsts";
+import { ActionConsts } from "../redux/actions/consts";
 
 export const useLoading = () => {
   const dispatch = useDispatch();

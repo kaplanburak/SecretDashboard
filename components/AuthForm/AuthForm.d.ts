@@ -10,7 +10,7 @@ declare namespace IAuthForm {
   interface Fields {
     email: string;
     password: string;
-    fullName?: string;
+    name?: string;
   }
 
   interface FieldRules {

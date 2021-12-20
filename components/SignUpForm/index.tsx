@@ -1,21 +1,28 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
-import { createUserWithEmailAndPassword, UserCredential, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  UserCredential,
+  updateProfile,
+  setPersistence,
+  browserLocalPersistence,
+} from "firebase/auth";
 import { message as showMessage } from "antd";
 import { AuthForm } from "../AuthForm";
 import { IAuthForm } from "../AuthForm/AuthForm";
 import { ISignUpForm } from "./SignUpForm";
 import { useLoading } from "../../hooks";
 import { AuthFormType } from "../../definitions/enums";
+import { useDispatch } from "react-redux";
+import { AuthActions } from "../../redux/actions/auth";
 
 export const SignUpForm: FC<ISignUpForm.Props> = ({ authInstance }) => {
-  const router = useRouter();
   const { startLoading, stopLoading } = useLoading();
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleError = (error: any) => {
     stopLoading();
-
-    console.error(error);
 
     const { code } = error;
     let message = "An error occurred!";
@@ -30,22 +37,30 @@ export const SignUpForm: FC<ISignUpForm.Props> = ({ authInstance }) => {
   const handleSignUp = (values: IAuthForm.Fields) => {
     startLoading();
 
-    createUserWithEmailAndPassword(authInstance, values.email, values.password)
-      .then((credential: UserCredential) => {
-        const { user } = credential;
+    setPersistence(authInstance, browserLocalPersistence).then(() => {
+      createUserWithEmailAndPassword(authInstance, values.email, values.password)
+        .then((credential: UserCredential) => {
+          const { user } = credential;
+          const { name, email } = values;
 
-        updateProfile(user, {
-          displayName: values.fullName,
+          if (name) {
+            const displayName = name;
+
+            updateProfile(user, {
+              displayName,
+            })
+              .then(() => {
+                dispatch(AuthActions.setUser({ displayName, email }));
+                showMessage.success("Success!");
+                router.push("/dashboard");
+              })
+              .catch(handleError);
+          }
+
+          stopLoading();
         })
-          .then(() => {
-            showMessage.success("Success!");
-            router.push("/");
-          })
-          .catch(handleError);
-
-        stopLoading();
-      })
-      .catch(handleError);
+        .catch(handleError);
+    });
   };
 
   return <AuthForm handleSubmit={handleSignUp} type={AuthFormType.SignUp} />;

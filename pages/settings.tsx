@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
+import { AppLayout } from "../components";
 
 const Settings: NextPage = () => {
-  return <div>Settings</div>;
+  return <AppLayout>Settings</AppLayout>;
 };
 
 export default Settings;

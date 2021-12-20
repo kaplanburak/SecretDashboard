@@ -1,0 +1,47 @@
+.layout {
+  min-height: 100vh;
+  position: relative;
+}
+
+.sider {
+  height: 100vh;
+  position: fixed;
+  top: 64px;
+  left: 0;
+}
+
+.menu {
+  height: 100%;
+}
+
+.contentLayout {
+  padding-left: 200px;
+  min-height: calc(100vh - 64px);
+}
+
+.content {
+  padding: 64px;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.headerUser {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.headerText {
+  color: whitesmoke !important;
+  margin: 0 !important;
+  line-height: normal !important;
+}
+
+.secondary {
+  color: lightgray !important;
+}

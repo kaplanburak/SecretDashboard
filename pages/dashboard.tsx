@@ -1,7 +1,12 @@
 import type { NextPage } from "next";
+import { AppLayout } from "../components";
 
 const Dashboard: NextPage = () => {
-  return <div>Dashboard</div>;
+  return (
+    <AppLayout>
+      <div>Dashboard</div>
+    </AppLayout>
+  );
 };
 
 export default Dashboard;
