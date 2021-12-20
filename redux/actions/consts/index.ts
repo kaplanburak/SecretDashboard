@@ -9,7 +9,6 @@ export const ActionConsts = {
   },
   Settings: {
     CREATE_NEW_USER: "CREATE_NEW_USER",
-    UPDATE_NEW_USER: "UPDATE_NEW_USER",
     DELETE_NEW_USER: "DELETE_NEW_USER",
     RESET_REDUCER: "RESET_REDUCER",
   },

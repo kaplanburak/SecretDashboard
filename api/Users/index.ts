@@ -20,8 +20,6 @@ export const UsersAPI = {
     return axios.put(endpoint, payload).then((res) => res.data);
   },
   Delete: (id: number): Promise<any> => {
-    return axios.delete(`${endpoint}/${id}`).then((res) => {
-      console.log("res", res);
-    });
+    return axios.delete(`${endpoint}/${id}`).then((res) => {});
   },
 };
