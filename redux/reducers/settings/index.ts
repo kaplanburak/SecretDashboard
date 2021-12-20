@@ -19,7 +19,7 @@ export const SettingsReducer = (
     case ActionConsts.Settings.DELETE_NEW_USER:
       return {
         ...state,
-        newUsers: [...action.payload],
+        newUsers: action.payload,
       };
     case ActionConsts.Settings.RESET_REDUCER:
       return initialState;
